@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <p>Secuencia de Fibonacci :<output id="result"></output>
+        </p>
+        <button onclick="startworker()">Start worker</button>
+        <button onclick="stopworker()">Stop worker</button>
+        <p><strong>Note:</strong> Esto funciona en firefox y en safarin pero en chrome no.</p>
+        <script type="text/javascript">
+            var w;
+            function startworker() {
+                    if(typeof(Worker) !== "undefined"){
+                        if(typeof(w) == "undefined"){
+                            console.log("hola")
+                            w = new Worker("Trabajo_web_worker.js");
+                        }
+                        w.onmessage = function(event){
+                            document.getElementById("result").innerHTML = event.data;
+                        };
+                    }else{
+                        document.getElementById("result").innerHTML="Fallo al ejecutar en el web workker";
+                    }
+
+            }
+
+            function stopworker(){
+                w.terminate();
+                w = undefined;
+            }
+
+        </script>
+    </body>
+</html>

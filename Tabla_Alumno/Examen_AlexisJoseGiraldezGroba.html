@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id="numeros" type="text">
+        <input type="radio" name="opcion" value="ascendente"><label>Oredenar ascedentes</label><br>
+        <input type="radio" name="opcion" value="descendente"><label>Ordenar descendente</label><br>
+        <button onclick="enviarDatos();">Crear Lista</button><br>
+        <div id="p">
+            <p>Lista vacia...</p>
+        </div>   
+        <script type="text/javascript"> 
+        //Ordena los numeros segun la opcion selecionada          
+            function ordenar(opcion,numeros){
+                 var aux="";
+                for (var i = 0; i < opcion.length; i++){
+                    if (opcion[i].checked) {
+                         aux = opcion[i].value;
+                    }
+                }
+                if(aux=="ascendente") {
+                    return numeros.sort((a,b)=> a-b);
+                }else{
+                    return numeros.sort((a,b)=>b-a);
+                }
+            }
+            
+            function enviarDatos() {
+                opcion = document.getElementsByName("opcion");
+                cadena = document.getElementById("numeros").value;
+                numeros = cadena.split(",");
+                elemento=document.getElementById("p");
+                for (var i = 0; i < numeros.length; i++){
+                    numeros[i]=parseInt(numeros[i]);
+                }
+                numeros=ordenar(opcion,numeros);
+                crearLista(numeros);
+
+                botonLista=document.createElement("button");
+                botonLista.innerHTML="compraba nueva lista";
+                botonLista.setAttribute("onclick", "comprobarNuevaLista();");
+                elemento.appendChild(botonLista);
+
+            }
+            //crea la lista apartir de los numeros dados
+            function crearLista(numeros){
+               var elemento = document.getElementById("p");
+               var lista;
+               var labels;
+               var radioBoton;
+               for (var i=0; i<numeros.length; i++){
+                    radioBoton=document.createElement("input");
+                    radioBoton.setAttribute("type","checkbox");
+                    radioBoton.setAttribute("class","num");
+                    radioBoton.setAttribute("name","numeros");
+                    elemento.appendChild(radioBoton);
+                    labels=document.createElement("label");
+                    labels.setAttribute("class","labelnum");
+                    labels.innerHTML=numeros[i]+"<br>";
+                    elemento.appendChild(labels);
+                }
+            }
+            //Elemina de la lista los numeros no selecionados, Queda por implemetar el aprovehchar los ids de label para para eleminarlos tambien
+            function comprobarNuevaLista(){
+                numeros=document.getElementsByClassName("num");
+                labels=document.getElementsByClassName("labelnum");
+                auxnumeros=numeros;
+                for (var i=0;i<auxnumeros.length; i++){
+                    if(!numeros[i].checked){
+                        numeros[i].remove();
+                        labels[i].remove();
+                        }
+                }
+            }
+        </script>
+    </body>
+</html>

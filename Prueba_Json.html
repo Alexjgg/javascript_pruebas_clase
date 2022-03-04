@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h2>Ejemplo de objectos JSON</h2>
+        <p id="demo"></p>
+        <script>
+            var text = '{"nombre":"IES MAR DE ALBORÁN","calle":"Fuente María Gil S/N","telefono":"951 33 56 45"}';
+            var obj = JSON.parse(text);
+            document.getElementById('demo').innerHTML =
+            obj.nombre + "<br>" +
+            obj.calle + "<br>" +
+            obj.telefono;
+        </script>
+    </body>
+</html>

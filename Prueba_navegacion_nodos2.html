@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <p id="id01"></p>
+    
+    <script>
+    document.getElementById("id01").innerHTML="hola <b>y</b> adios";
+    
+    alert("Hijos de p "+document.getElementById("id01").firstChild.nodeValue);
+    alert("Hijos de body "+document.body.firstChild.nodeValue);
+    alert("Ultimo Hijo de p "+document.getElementById("id01").lastChild.nodeValue);
+    alert("Hijo medio de p "+document.getElementById("id01").firstChild.nextSibling.firstChild.nodeValue);
+        
+    </script>
+</body>
+
+</html>

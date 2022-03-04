@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script>
+
+    class Figuras {
+        constructor(){
+
+            if(new.target ===Figuras)throw new Error("Metodo abstract"); 
+        }
+        perimetro(){
+            
+            throw new Error("Metodo abstract");    
+        }
+        area() {
+            throw new Error("Metodo abstract");
+            
+        }
+    }
+        
+        class Circulares extends Figuras {
+            
+            constructor(radio){
+                super();
+                this.pi=Math.PI;
+                this.radio=radio;
+                if(new.target ===Circulares)throw new Error("Circulares abstractMetodo abstract");
+            }
+        }
+
+            class Circulo extends Circulares{
+                constructor(radio){
+                    super(radio);
+                }
+                
+                perimetro(){
+                    return 2*this.pi*this.radio;
+                }
+                area(){
+                return this.pi*(this.radio*this.radio);   
+                }
+            }
+
+            class Elepsi extends Circulares {
+                constructor(radio1,radio2){
+                    super(radio1);
+                    this.radio2=radio2;
+                }
+
+                perimetro(){
+                    return 2*this.pi*(Math.sqrt(((this.radio*this.radio)+(this.radio2*this.radio2))/2))
+                }
+                area(){
+                    return this.radio*this.radio2*this.pi;
+                }    
+            }
+
+    class Poligonos extends Figura {
+
+        constructor(lado){
+            super();
+            this.lado=lado;
+            if(new.target===Poligonos)throw new Error("Metodo abstract");
+        }
+    }
+
+        class Rectangulares extends Poligonos{
+            constructor(lado){
+                super(lado);
+                if(new.target===Poligonos)throw new Error("Metodo abstract");
+            }
+            
+            }
+
+            class Rectangulo extends Rectangulares{
+                constructor(base,altura){
+                this.base = super(base);
+                this.altura = altura;
+                }
+                area(){
+                    return this.base*this.altura;
+                }
+                perimetro(){
+                    return (2*this.altura)+(2*this.base);
+                }
+            }    
+        
+            class Cuadrado extends Poligonos{
+                constructor(lado){
+                    super(lado);
+                }
+                area(){
+                    return this.lado*this.lado;
+                }
+                perimetro(){
+                    return (this.lado)*4;
+                }
+            }
+        class Regular extends Poligonos{
+        
+            constructor(lado,nLados){
+                super(lado);
+                this.nLados=nLados;
+            }
+            apotema(){
+                return this.lado/(2*Math.tan(((360/nLados)/2)*(Math.PI/180)));
+            }
+            perimetro(){
+                return this.nLados*this.lado;
+            }
+            area(){
+                return .5*this.apotema*this.perimetro();
+            }
+
+        }
+
+
+
+    var circulo= new Circulo(23);
+    console.log(circulo.radio);
+    console.log(circulo.area());
+    
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                border: 0;
+            }
+            header {
+                margin-top:0;
+                text-align: center;
+                width: 100%;
+                position:fixed; 
+                min-height:15vh;
+                background-color: aliceblue;
+            }
+            main {
+                width: 100%;
+                padding-top:200px;
+                min-height:80vh;
+                background-color:beige;
+                padding-bottom: 50px;
+            }
+            footer {
+                text-align: center;
+                font-size:25px;
+                width: 100%;
+                bottom: 0px;
+                position:fixed;
+                min-height:5vh;
+                background-color:aquamarine;
+            }
+        </style>
+    </head>
+    
+<body>
+    <header >Articulos</header>
+    <main id="articulos"></main>
+    <footer>  
+        <button onclick="crearArticulos()"> Crear Aticulo</button>
+        <button onclick="comprobar()"> Eleminar articulos selecionados</button>
+    </footer>
+<script>
+var  numeros_titulares=0;
+function comprobar(){
+
+   var checks = document.getElementsByTagName("input");
+   console.log(checks); 
+   
+   Array.from(checks).forEach(function(element) {
+    console.log(element);
+        if(element.checked){
+            element.parentNode.remove();   
+            }       
+    });
+}
+function crearArticulos(){
+        numeros_titulares++;
+        elemento = document.getElementById("articulos");
+    
+        articulo = document.createElement("div");
+
+        titulo = document.createElement("h1");
+        resumen = document.createElement("p");
+        texto = document.createElement("p");
+        checks=document.createElement("input");
+        checks.setAttribute("type", "checkbox");    
+    
+        titulo.innerHTML ="titular "+numeros_titulares;
+        resumen.innerHTML="Lorem ipsum dolor ";
+        texto.innerHTML="Lorem ipsum dolor sit amet consectetur adipiscing elit fames imperdiet facilisis, ante magnis mattis pharetra iaculis metus nostra nascetur natoque molestie potenti, mi convallis ultrices odio id scelerisque nulla egestas tristique. Nostra cras nibh parturient habitant ut posuere litora porta ligula quisque curabitur, phasellus leo primis orci eleifend fames tellus euismod facilisi auctor, rutrum montes at massa tempor dis et erat pellentesque suspendisse. Aptent facilisis id rutrum interdum nostra justo vehicula posuere facilisi, ad tellus vitae pellentesque libero et aliquam velit dignissim lacinia, tincidunt pretium a at natoque tortor nam nisi.";
+    
+       console.log(elemento.getElementsByTagName("div")[0]); 
+           
+        if(elemento.getElementsByTagName("div")[0]===undefined){
+        
+            articulo.appendChild(titulo);
+            articulo.appendChild(resumen);
+            articulo.appendChild(texto);
+            articulo.appendChild(checks);
+            elemento.appendChild(articulo);
+        }else{    
+            var ref = elemento.getElementsByTagName("div")[0];
+
+            articulo.appendChild(titulo);
+            articulo.appendChild(resumen);
+            articulo.appendChild(texto);
+            articulo.appendChild(checks);
+            elemento.insertBefore(articulo,ref);
+        }
+    }
+
+
+window.onload=function(){
+    crearArticulos();
+}
+</script>
+</body>

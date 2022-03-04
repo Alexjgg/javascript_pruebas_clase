@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <style type="text/css">
+             img{
+                 width: 20px;
+                 height: 20px;
+             }
+         </style>
+    </head>
+    <body>
+
+        <div>
+        <input id="check1" type="checkbox" onchange="comprobacion('check1','img1')"><label>Esta frase es cierta</label><img  id="img1"><br>
+        </div>
+        <script>
+           function comprobacion(check_id,img_id){
+                
+                elemento=document.getElementById(check_id);
+                console.log(elemento);
+                if(elemento.checked){
+                var imagen_check="check.jpg";
+                
+                var imagen_error="error.jpg";
+               
+                var imagenes=[imagen_check,imagen_error];
+                var valor=Math.floor(Math.random()*(2-0))+0;
+                    document.getElementById(img_id).setAttribute("src",imagenes[valor]);
+                    document.getElementById(img_id).style.display="block";
+                    
+                }else{
+                    document.getElementById(img_id).style.display="none";
+                }
+            }
+        
+        </script>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class="contdiv">
+        Lorem ipsum<em> dolor sit amet consectetur</em> adipisicing<em> elit. Odit, recusandae</em> quasi quis quidem rerum
+        laudantium vitae possimus neque eos consequatur consectetur<em> accusantium minima </em>mollitia, <em> iusto </em>fugiat error assumenda. Esse!
+        </div>
+        <div class="contdiv">
+            Lorem ipsum dolor <i>sit</i> amet, consectetur<i> adipisicing</i> elit. Dolorum<i> voluptas</i> est veritatis saepe repudiandae 
+            eveniet nesciunt quae ducimus, suscipit, quos quibusdam ut! Harum neque in, <i>minus </i>deserunt <i>nostrum</i> minima placeat?
+        </div>
+        <div class="contdiv">
+            Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing <strong> Adipisci</strong> voluptatem<strong> ab</strong> optio<strong> officiis</strong> quam. Itaque, illum porro
+             incidunt architecto veniam exercitationem voluptate harum. Laudantium quam maiores quae <strong>, molestiae</strong> cupiditate.
+        </div>
+        <span class="contspan">
+            Lorem ipsum dolor <b>sit</b> amet <b>consectetur</b>, adipisicing <b>elit</b>. Assumenda <b>minima</b> quas sunt. Vel, temporibus iure quo libero illo delectus
+            , a odio deserunt <b>aspernatur</b> quis magni ipsam <b>consequuntur</b> eveniet non laudantium?
+        </span>
+        <span class="contspan">
+            Lorem ipsum dolor,<em> sit</em> amet consectetur<em> adipisicing</em> elit. Laboriosam, dignissimos<em> facere</em> asperiores perspiciatis <em>repellat</em> necessitatibus repudiandae,
+             enim <em>ratione</em> at, voluptas recusandae sunt et atque ab. Quae non porro cupiditate nihil.
+        </span>
+        <p id="1"></p>
+        <script>
+            divs=document.getElementsByClassName("contdiv");
+            span=document.getElementsByClassName("contspan");
+            cantidaddivs = "";
+            cantidadspan="";
+            for (let i = 0; i < divs.length; i++) {
+                 em= divs[i].getElementsByTagName("em").length; 
+                 ihtml=divs[i].getElementsByTagName("i").length;
+                 strong=divs[i].getElementsByTagName("strong").length;
+                cantidaddivs=cantidaddivs+"En el div"+i+" hay -em= "+em+" -i= "+ihtml+" -strong= "+strong;              
+            }
+            for (let i = 0; i < span.length; i++) {
+                em=span[i].getElementsByTagName("em").length;
+                ihtml=span[i].getElementsByTagName("i").length;
+                strong=span[i].getElementsByTagName("strong").length;
+                cantidadspan=cantidadspan+"En el span"+i+" hay -em= "+em+" -i= "+ihtml+" -strong= "+strong;              
+                
+                
+            }
+            console.log("cantidades "+cantidadspan+cantidaddivs);
+
+
+
+        </script>
+    </body>
+</html>

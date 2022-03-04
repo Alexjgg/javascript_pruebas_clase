@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html>
+        <head></head>
+        <body>
+             <button id="boton">Haz click</button>
+             <script>
+                 var b =document.getElementById("boton");
+                 b.addEventListener("click",f_hola);
+                 b.addEventListener("click",f_adios);
+                 b.addEventListener("mouseover",f_over);
+                 b.addEventListener("mouseout",f_out);
+
+                function f_hola(){
+                    alert("hola");
+                }
+
+                function f_adios(){
+                    alert("adios");
+                }
+
+                function f_over(){
+                    b.style.color = "red";
+                    b.style.fontWeight="bold";
+                }
+
+                function f_out(){
+                    b.style.color = "black";
+                    b.style.fontWeight="normal";
+                }
+             </script>   
+        </body>        
+    </html>

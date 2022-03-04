@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+    <html>
+        <head></head>
+        <body>
+            <button id="boton"></button>
+            <p id ="prueba"></p>
+            <h1 id="aviso"></h1>
+            <script>
+                var cont =0;
+                document.getElementById("boton").addEventListener("click",fun);
+                function fun(){
+                    document.getElementById("prueba").innerHTML= 3*Math.random();
+                    cont++;
+                    if(cont==3){
+                            document.getElementById("boton").removeEventListener("click",fun);
+                            document.getElementById("aviso").innerHTML="Ya no puedes clickar más veces !!!!";
+                            document.getElementById("aviso").style.color="blue";
+                    }
+                }
+            </script>
+        </body>
+    </html>

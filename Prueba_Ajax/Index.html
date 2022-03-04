@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <script>
+
+            function muestraSugerencia(str){
+                if(str.length == 0){
+                    document.getElementById("txtSugerencia").innerHTML = "";
+                }else {
+                    var xmlhtpp = new XMLHttpRequest();
+                    xmlhtpp.onreadystatechange = function(){
+                        if(this.readyState == 4 && this.status == 200){
+                            document.getElementById("textSugerencia").innerHTML = this.responseText;
+                        }
+                    };
+                    xmlhttp.open("GET","http://localhost/Prueba_AJax/getSugerencia.php?param="+str,true);
+                    xmlhtpp.send();
+                }
+
+            }
+    
+        </script>
+    </head>
+    <body>
+        <p><b>Escribe el nombre de alguna ciudad de a donde quieres ir:</b></p>
+        <form>
+            Ciudad: <input type="text" onkeyup="muestraSugerencia(this.value)">
+        </form>
+        <p>Sugerencias: <span id="textSugerencia"></span></p>
+    </body>
+ 
+</html>

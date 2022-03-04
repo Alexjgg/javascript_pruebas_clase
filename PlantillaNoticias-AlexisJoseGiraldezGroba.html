@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .imagenes_articulos{
+                height: 200px;
+                width: 250px,
+            }
+            .logo{
+                height: 50px;
+                width: 50px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <header id="cabecera">
+            <div>
+                <h1 class="titulo">Plantilla  </h1>
+                <img class="logo" src="logo.png">
+            </div>
+           
+            <nav class="navegador">
+                <ul>
+                    <li>Inicio</li>
+                    <li>Deportes</li>
+                    <li>Sesion</li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside id="lateral">
+            <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, delectus quam? Hic repudiandae autem quos, deleniti numquam, quis exercitationem sit esse aperiam similique animi pariatur maxime, sint in sed explicabo.</div>
+        </aside>
+
+        <section id="contenedor_articulos">
+            <nav>Inicio</nav>
+            <article>
+                <h1 class="titulos_articulos">Articulo 1</h1>
+                <img class="imagenes_articulos" src="imaxen1.jpg">
+                <p class>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt earum est similique? Nobis odit expedita quia voluptas velit alias dignissimos numquam exercitationem quos. Temporibus, ullam! Voluptatum officiis fugiat cum mollitia!</p>
+            </article>
+            <article>
+                <h1 class="titulos_articulos">Articulo 2</h1>
+                <img class="imagenes_articulos" src="imaxen2.jpg">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores debitis enim iste aut? Ex asperiores velit totam quis nostrum, eveniet aut iure tenetur similique? Voluptas quaerat amet quae qui corporis?</p>
+            </article>
+            <article>
+                <h1 class="titulos_articulos">Articulo 3</h1>
+                <img class="imagenes_articulos" src="imaxen3.gif">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, corrupti! Animi consequuntur id dolore facere assumenda! Cupiditate consectetur quas nostrum, similique expedita dignissimos nobis atque ab at suscipit dicta dolorem?</p>
+            </article>
+            
+        </section>
+        
+        <footer id="pie">
+            <div >Alexis Jose</div>
+            <ul>
+                <li>Correo</li>
+                <li>Direccion</li>
+                <li>Telefono</li>
+            </ul>
+        </footer>
+    
+    </body>
+    <script >
+        var query1 = document.querySelectorAll("footer > ul > li");
+        var query2 = document.querySelectorAll(".imagenes_articulos");
+        var query3 = document.querySelectorAll(".navegador > ul > li");
+        var query4 = document.querySelectorAll(".titulos_articulos");
+            var aux;
+            var cont=0;
+            query4.forEach(element => {
+                cont++;
+                if(!cont %2==0){
+                aux=element; 
+            }
+          });
+        query4= aux;
+      
+        var query5 = document.querySelectorAll(".pie > div");
+        console.log(query1);
+             query1.forEach(element => {
+                element.setAttribute("class","footer_lista_li");
+            });
+        console.log(query2);
+             query2.forEach(element => {
+                 element.style.borderRadius="8px";
+             })
+        console.log(query3);
+             query3.forEach(element =>{
+                 element.setAttribute("class","navegador_lista_li");
+             })
+
+        console.log(query4);
+             query4.style.backgroundColor="red";
+
+        console.log(query5);
+        query5.forEach(element =>{
+            element.innerHTML="Autor nuevo";
+        })
+        
+        var query6 = document.querySelectorAll(".navegador_lista");
+        console.log(query6);
+        query6.forEach(element=>{
+            console.log(element);
+        })
+
+
+    </script>
+</html>
+<!--
+    1)todos los li del footer
+    2)las imagenes de los articulos
+    3)todos los li de la cabezera
+    4)el tiyulo de los articulos impares
+    5)el div del footer
+-->

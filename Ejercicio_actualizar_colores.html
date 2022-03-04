@@ -1,0 +1,91 @@
+<head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        #headercd {
+            margin-top:0;
+            text-align: center;
+            width: 100%;
+            position:fixed; 
+            min-height:15vh;
+            background-color: aliceblue;
+        }
+        #asidecd{
+            width:10%;
+            
+            min-height: 83.6vh;
+            text-align: center;
+            position:fixed;
+            bottom:0;
+            background-color:rgb(255, 159, 159);
+        }
+        #maincd {
+            margin-left: 183.90px;
+            width: 90%;
+            padding-top:200px;
+            min-height:85vh;
+            background-color:beige;
+            padding-bottom: 50px;
+        }
+        #footercd {
+            text-align: center;
+            font-size:25px;
+            width: 100%;
+            bottom: 0px;
+            position:fixed;
+            min-height:5vh;
+            background-color:aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"">
+            CANECERA
+        <div id="nav">
+            Navegador 
+        </div>
+    </div>
+    <div id="aside">
+        lateral
+    </div>
+    <div id="main">
+
+        ARTICULOS
+        <div class="article1">Articulo</div>
+
+        <div class="article2">Articulo</div>
+    </div>
+    <footer id="footer">  
+            Pie
+    </footer>
+<script>
+    onload = function() {
+    var headerbj = document.getElementById("header");
+    var navbj = document.getElementById("nav");
+    var asidebj = document.getElementById("aside");
+    var mainbj = document.getElementById("main");
+    var articlebj1 = document.getElementById("article1");
+    var articlebj2 = document.getElementById("article2");
+    var footerbj = document.getElementById("footer");
+
+    var headernb= document.createElement("header").setAttribute("id","header");
+    var navnb = document.createElement("nav").setAttribute("id","nav");
+    var asidenb = document.createElement("aside").setAttribute("id","aside");
+    var mainnb = document.createElement("main").setAttribute("id","main");
+    var articlenb1 = document.createElement("article1").setAttribute("id","article1");
+    var articlenb2 = document.createElement("article2").setAttribute("id","article2");
+    var footernb = document.createElement("footer").setAttribute("id","footer");
+    navbj.parentNode.replaceChild(navbj,navnb);
+    headerbj.parentNode.replaceChild(headerbj,headernb);
+    article1bj.parentNode.replaceChild(article1bj,articlenb1);
+    article2bj.parentNode.replaceChild(article2bj,articlenb2);
+    mainbj.parentNode.replaceChild(mainbj,mainnb);
+    footerbj.parentNode.replaceChild(footerbj,footernb);
+    }
+
+</script>
+</body>

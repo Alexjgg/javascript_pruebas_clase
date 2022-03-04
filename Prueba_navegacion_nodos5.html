@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <p> 
+            <strong></strong>
+            <h3></h3>
+        </p>
+        <div> 
+            <em></em>
+        </div>
+        <h1>
+            <em></em>
+            <em></em>
+        </h1>
+        <div>
+            <img>
+            <h3></h3>
+        </div>
+        <script>
+            cuerpo = document.body.children;
+            var aux="" ;
+            var contador = new Array(); 
+            for (let i = 0; i < cuerpo.length; i++) {
+                hijos = cuerpo[i].children;
+                for (let j = 0; j < hijos.length; j++){
+
+                    if(contador[hijos[j].nodeName]===undefined) {
+                    contador[hijos[j].nodeName]=1;
+                    }else {
+                    contador[hijos[j].nodeName]++;
+                 }     
+                }
+
+                if(contador[cuerpo[i].nodeName]===undefined) {
+                    contador[cuerpo[i].nodeName]=1;
+                 }else {
+                    contador[cuerpo[i].nodeName]++;
+                 }     
+            
+            }
+
+            for(var clave in contador){
+                document.write(clave + ":"+contador[clave]+"</br>");
+            }
+           
+
+            alert(contador);
+            console.log(contador);
+        </script>
+    </body>
+
+</html>

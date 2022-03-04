@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+    <html>
+        <head></head>
+        <body>
+            <button onclick="loc()" >Google</button>
+            <button onclick="confirmacion()">Confirmar...</button>
+            <button onclick="pedirInfo()">Pedir</button>
+            
+        </body>
+        <script>
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+            var x = document.write("<br /> Ventana Interna navegador: " + w + " x " + h );
+            
+            var res = screen.width + " x " + screen.height;
+            document.write("<br /> Res:"+res);
+            var so = navigator.platform;
+
+            document.write("<br />Sistema operativo del ususario: "+so)
+
+            function loc(){
+                window.location.assign("http://www.google.es");
+            }
+
+            function confirmacion(){
+                var txt ;
+                if(confirm("Presiona un boton")){
+                    txt="Has aceptado";
+
+                }else {
+                    txt="has cancelado";
+                }
+                document.write("<br />"+txt);
+            }
+            function pedirInfo(){
+                var txt;
+                var persona = prompt("Nombre?:","Marcos")
+                if(persona == null || persona == ""){
+                    txt="El usuario a cancelado"
+                }else{
+                    txt="Hola"+persona+"que tal?";
+                }
+                document.write("<br /> "+txt);
+            }
+        </script>
+    </html>

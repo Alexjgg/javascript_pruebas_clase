@@ -1,0 +1,9 @@
+.container{
+    height:300px;
+    width:500px;
+    border:1px solid black;
+ }
+ #imagen{
+     height:30px;
+     width:30px;
+ }

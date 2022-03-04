@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<header>
+
+</header>
+<body>
+<div id="Container">
+    <h1>Tabla de alumnos y Asignaturas</h1><br/>
+    
+    <table id="1">
+
+    </table>
+    <button onclick="main();">Generar tabla</button>
+</div>
+<script>
+    //funcion que hace el llamado al resto de funciones 
+    function main(){
+    arraydeValores = generarArray();
+    valoresColoreados = colorear(arraydeValores);
+    mediasT = medias(arraydeValores);
+    desviaciones = desviacion_tipica(arraydeValores,mediasT);
+    valoresColoreadosT = montarValores(valoresColoreados,mediasT);
+    valoresColoreados = montarValores(valoresColoreados,desviaciones);
+    escribirDatos(valoresColoreados);    
+    }
+    //funcion que genera el array con valores aleatorios
+        function generarArray(){
+            arrayDeAluAs= new Array(4);
+            for (let i = 0; i < arrayDeAluAs.length; i++) {
+                    arrayDeAluAs[i]=new Array(4);
+                for (let j = 0; j < arrayDeAluAs[i].length; j++) {
+                    arrayDeAluAs[i][j]=Math.floor(Math.random*(0,10));
+                    
+                }
+            }
+            return arrayDeAluAs;
+        }
+        //Funcion para hacer media y devuelve las medias de alumnos y asignaturas    
+        function medias(valores){
+          var  arrayDeAluAs = valores;
+          var mediaAsn= Array(4);
+          var mediaAlu= Array(4);
+            for (let i = 0; i < arrayDeAluAs.length; i++) {
+                    for (let j = 0; j < arrayDeAluAs[i].length; j++) {
+                        mediaAlu[i]=mediaAlu[i]+arrayDeAluAs[i][j];
+                        mediaAsn[i]=mediaAsn[i]+arrayDeAluAs[j][i];   
+                    }
+                }
+            for (let i = 0; i < arrayDeAluAs.length; i++) {
+                mediaAlu[i]=mediaAlu[i]/4;
+                mediaAsn[i]=mediaAsn[i]/4;
+                }
+                    return mediaTotales=[mediaAlu,mediaAsn];
+        }
+        //Funcion para agregar las medias y las desviaciones tipicas 
+        function montarValores(valores,nuevosValores){
+                for (let i = 0; i < valores.length; i++) {
+                    for (let j = 0; j < valores[i].length; j++) {
+                        if(i==0)valores[i].push(nuevosValores[0][j]);
+                        if(j==0)valores[i][0].push(nuevosValores[1][j]);
+                    }
+                    
+                }
+         }
+        //Funcion para hacer disviacion tipica y devuelve las disviaciones tipicas de alumnsoy asingnaturas
+        function desviacion_tipica(valores,medias){
+        let varianzaAlumno=0;
+        let varianzaAsing=0;
+        let mediaAlumno=medias[0];
+        let mediaAsign= medias[1];
+            for (let i = 0; i < valores.length; i++) {
+                for (let j = 0; j < valores[i].length; j++) {
+                    varianzaAlumno=varianzaAlumno+Math.pow(valores[i][j]-mediaAlumno[i],2);
+                    varianzaAsing=Math.pow(valores[j][i]-mediaAsign,2);
+                }
+                    
+            }
+            desviAlumno= Math.sqrt(varianzaAlumno);
+            desviAsign = Math.sqrt(varianzaAsing);
+            desviaciones=[desviAlumno,desviAsign];
+                return desviaciones;
+        }
+        //Funcion para escribir la tabla
+        function escribirDatos(datos){
+        var lugar = document.getElementById("1")
+        var datosEscritos ="";
+
+            for (let i = 0; i < datos.length; i++) {
+                for (let j = 0; j < datos[i].length; j++) {
+                    if(i==0)datos[i].shift("As"+[j]);
+                    if(j==0)datos[i][j].shift("Al"+[i]);
+                }
+                
+            }
+
+            for (let i = 0; i < datos.length; i++) {
+                datosEscritos=datosEscritos+"<tr>";
+                for (let j = 0; j < datos[i].length; j++) {
+                if(i==0){
+                    datosEscritos=datosEscritos+"<th>"+datos[i][j]+"</th>";
+                }else{
+                    datosEscritos=datosEscritos+"<td>"+datos[i][j]+"</th>";   
+                    }
+                    
+                }
+                datosEscritos=datosEscritos+"</tr>";
+            }
+            lugar.innerHTML=datosEscritos;
+        }
+        //Agrega colores a los valores segun las notas y los de vuelve
+        function colorear(valores){
+            for (let i = 0; i < valores.length; i++) {
+                for (let j = 0; j < valores.length; j++) {
+                    if(valores[i][j]>=6){
+                        valores[i][j]='<label style="color: green;">'+valores[i][j]+'</label>';
+                    }else if(valores[i][j]>=4){
+                        valores[i][j]='<label style="color: yellow;">'+valores[i][j]+'</label>';
+                    }else{
+                        valores[i][j]='<label style="color: red;">'+valores[i][j]+'</label>';
+                    }
+                }
+                
+            }
+                return valoresColoreados=valores;
+        }
+    </script>
+</body>

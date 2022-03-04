@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+      
+        </head>
+        <body>
+            <input type="text" id="inp" onkeyup="mayusculas()" onkeypress="mayusculas()">
+            <script>
+                function mayusculas(){
+                    elemento=document.getElementById("inp");
+                    console.log(elemento.value);
+                    elemento.value= elemento.value.toUpperCase();
+                }
+            </script>
+        </body>
+
+    </html>

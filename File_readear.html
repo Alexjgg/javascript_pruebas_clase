@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<input type="file" id="entrada" />
+	<p id="contenido"></p>
+	
+
+<script>
+
+document.getElementById("contenido")
+  .addEventListener("change", leer);
+
+function leer(e) {
+  var archivo = e.target.files[0];
+
+  if (!a) {
+    return;
+  }
+
+  var lector = new FileReader();
+
+  l.onload = function(e) {
+    document.getElementById("salida")
+	.innerHTML = e.target.result;
+  };
+
+  l.readAsText(archivo);
+}
+
+
+</script>
+
+</body>
+</html>

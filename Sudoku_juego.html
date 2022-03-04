@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        input {
+            border: 1px solid;
+            border-color: red;
+            margin: 0px;
+            padding: 0px;
+            width: 9px;
+            height: 20px;
+        }
+
+        td {
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .acierto {
+            background-color: green;
+        }
+
+        .error {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sudoku" style="display: none;">
+        <div id="tabla">
+        </div>
+        <button onclick="aleatorizarSudoku();">Aleatorizar</button>
+        <button onclick="comprobar_datos();">Resolver</button>
+    </div>
+    <button onclick="generarSudoku();">Generar Sudoku</button>
+    <script type="text/javascript">
+        var numeros = [2, 1, 5, 9, 3, 8, 4, 6, 7, 7, 8, 6, 1, 2, 4, 3, 5, 9, 9, 3, 4, 6, 5, 7, 2, 8, 1, 8, 6, 9, 5, 4, 2, 1, 7, 3, 1, 4, 3, 7, 8, 6, 5, 9, 2, 5, 2, 7, 3, 9, 1, 8, 4, 6, 6, 7, 2, 4, 1, 5, 9, 3, 8, 4, 9, 8, 2, 6, 3, 7, 1, 5, 3, 5, 1, 8, 7, 9, 6, 2, 4];
+        var arrayNumeros;
+        var arrayPosiciones;
+        function generarSudoku() {
+            datos = generarArray();
+            document.getElementById("sudoku").style.display = "block";
+            pintar_tabla(datos);
+        }
+        function aleatorizarSudoku() {
+            total_de_veces = new Array(6);
+            var datos = generarArray();
+            for (let i = 0; i < total_de_veces.length; i++) {
+                datos = aleatorizar(datos);
+            }
+            arrayNumeros = datos.slice();
+            arrayPosiciones = generarPosiciones();
+            pintar_tabla_jugar(datos);
+        }
+        function aleatorizar(datos) {
+            filasorcolumnas = Math.floor(Math.random() * (2 - 0));
+            rango = Math.floor(Math.random() * (4 - 0));
+            numero1 = 0;
+            numero2 = 0;
+            if (rango == 1) {
+                numero1 = Math.floor(Math.random() * (3 - 0));
+                do {
+                    numero2 = Math.floor(Math.random() * (3 - 0));
+                } while (numero1 == numero2);
+            } else if (rango == 2) {
+                numero1 = Math.floor(Math.random() * (3 - 0)) + 3;
+                do {
+                    numero2 = Math.floor(Math.random() * (3 - 0)) + 3;
+                } while (numero1 == numero2);
+            } else if (rango == 3) {
+                numero1 = Math.floor(Math.random() * (3 - 0)) + 6;
+                do {
+                    numero2 = Math.floor(Math.random() * (3 - 0)) + 6;
+                } while (numero1 == numero2);
+            }
+            for (let fila = 0; fila < datos.length; fila++) {
+                if (filasorcolumnas == 1) {
+                    if (fila == 0) {
+                        let aux = datos[numero1]
+                        datos[numero1] = datos[numero2];
+                        datos[numero2] = aux;
+                    }
+                }
+                for (let columna = 0; columna < datos[fila].length; columna++) {
+                    if (filasorcolumnas === 0) {
+                        if (columna == 0) {
+                            let aux = datos[fila][numero1];
+                            datos[fila][numero1] = datos[fila][numero2];
+                            datos[fila][numero2] = aux;
+                        }
+                    }
+                }
+            }
+            return datos;
+        }
+        function generarArray() {
+            var tabla = new Array(9);
+            aux = 0;
+            for (let fila = 0; fila < tabla.length; fila++) {
+                tabla[fila] = new Array(9);
+                for (let columna = 0; columna < tabla[fila].length; columna++) {
+                    tabla[fila][columna] = numeros[aux];
+                    aux++;
+                }
+            }
+            return tabla;
+        }
+        function pintar_tabla(datos) {
+            var tabla = "<table>";
+            for (let fila = 0; fila < datos.length; fila++) {
+                tabla += "<tr>";
+                for (let columna = 0; columna < datos[fila].length; columna++) {
+                    tabla += "<td>" + datos[fila][columna] + "</td>";
+                }
+                tabla += "</tr>";
+            }
+            tabla += "</table>";
+            document.getElementById("tabla").innerHTML = tabla;
+        }
+        /**
+         * Funcion que devuelve una tabla con posiciones inputs para jugar
+         * 
+         * funcion que recibiebdo datos que es un array del sodoku y posiciones que es un arry de posiciones que seran a intercambiar
+         * por ipunts, contrulle una tabla a aprtir de datos y esas posciones.
+         * 
+         * Devuelve una tabla con inputs
+         * */
+        function pintar_tabla_jugar(datos) {
+            var posiciones = JSON.parse(JSON.stringify(arrayPosiciones));
+            var tabla = "<table>";
+            for (let fila = 0; fila < datos.length; fila++) {
+                tabla += "<tr>";
+                for (let columna = 0; columna < datos[fila].length; columna++) {
+                    /**
+                     *COMPRUEBO QUE FILA ESTA DENTRO DE MI ARRAY POSICIONES Y SI ESTA COMPRUEBO CON QUE COLUMNA COICIDE ESA POSICION
+                     *EN LA QUE TENGO GUARDA ESA FILA
+                     *PARA LAS FILAS SE PUEDAN REPETIR ME LAS CARGO AL ENTRAR EN UNA
+                     */
+                    var aux = -2;
+                    if (posiciones[0].indexOf(fila) != -1 && columna == posiciones[1][posiciones[0].indexOf(fila)]) {
+                        tabla += "<td>" + '<input class="inputs" type="text">' + "</td>";
+                        aux = posiciones[0].indexOf(fila);
+                        posiciones[0][aux] = -9;
+                    } else {
+                        tabla += "<td>" + datos[fila][columna] + "</td>";
+                    }
+                }
+                tabla += "</tr>";
+            }
+            tabla += "</table>";
+            document.getElementById("tabla").innerHTML = tabla;
+        }
+
+        function generarPosiciones() {
+            var posiciones = new Array(2);
+            for (let fila = 0; fila < posiciones.length; fila++) {
+                posiciones[fila] = new Array(3);
+                for (let numeros = 0; numeros < posiciones[fila].length; numeros++) {
+                    if (fila == 0) {
+                        posiciones[fila][numeros] = Math.floor(Math.random() * (9 - 0));
+                    } else if (fila == 1) {
+                        var aux = 0;
+                        do {
+                            aux = Math.floor(Math.random() * (9 - 0));
+                        } while (posiciones[fila].includes(aux));
+                        posiciones[fila][numeros] = aux;
+                    }
+                }
+            }
+            return posiciones;
+        }
+        function comprobar_datos() {
+            var tabla = "<table>";
+            valores = document.getElementsByClassName("inputs");
+            auxValores = 0;
+            console.log("ArrayPosiciones", arrayPosiciones);
+            posiciones = JSON.parse(JSON.stringify(arrayPosiciones));
+            console.log("Posiciones", posiciones);
+            datos = arrayNumeros.slice();
+            for (let fila = 0; fila < datos.length; fila++) {
+                tabla += "<tr>";
+                for (let columna = 0; columna < datos[fila].length; columna++) {
+                    var auxPosiciones = -2;
+                    if (posiciones[0].indexOf(fila) != -1 && columna == posiciones[1][posiciones[0].indexOf(fila)]) {
+                        auxPosiciones = posiciones[0].indexOf(fila);
+                        console.log("Auxiliar", auxPosiciones);
+                        posiciones[0][auxPosiciones] = -5;
+                        if (datos[fila][columna] == valores[auxValores].value) {
+                            tabla += '<td class="acierto">' + valores[auxValores].value + "</td>";
+                        } else {
+                            tabla += '<td class="error">' + valores[auxValores].value + "</td>";
+                        }
+                        auxValores++;
+                    } else {
+                        tabla += "<td>" + datos[fila][columna] + "</td>";
+                    }
+                }
+                tabla += "</tr>";
+            }
+            tabla += "</table>";
+            document.getElementById("tabla").innerHTML = tabla;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+    <html>
+        <head></head>
+        <body>
+                <button id="boton01">Haz click</button>  
+                <button id="buton02">Haz click</button>
+                <button id="buton03">Haz click</button>
+            <script>
+                document.getElementById("boton01").addEventListener("click",function(){alert("Hola 01");});
+                function mifuncion(txt,txt2) {
+                    console.log("prueba",txt);
+                    alert(txt);
+                    alert(txt2);
+                }
+                document.getElementById("buton02").addEventListener("click",function(){mifuncion("Hola esto es una prueba");});
+                document.getElementById("buton03").addEventListener("click",mifuncion.bind(this,"Prueba 3","prueba 4"));
+                function manejador() {
+                    mifuncion("Hola esto es prueba en 3");
+                }
+           </script>
+        </body>
+    </html>

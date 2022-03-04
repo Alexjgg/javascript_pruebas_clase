@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <button id="boton1">Eventos</button>
+        <div id="resultado"></div>
+        <button id="boton2">Eleminar evenetons</button>
+        <script type="text/javascript">
+            boton1 = document.getElementById("boton1");
+            boton2 = document.getElementById("boton2");
+            resultado = document.getElementById("resultado");
+            function fn_click(){
+                resultado.innerHTML = "Has echo click";
+            }
+
+            function fn_mouseover(){
+                resultado.innerHTML = "Estas por encima";
+                console.log("hola");
+            }
+
+            function fn_mouseout(){
+                resultado.innerHTML = "Te has ido";
+            }
+            boton1.addEventListener("click", fn_click);
+            boton1.addEventListener("mouseover",fn_mouseover);
+            boton1.addEventListener("mouseout", fn_mouseout);
+            boton2.addEventListener("click", function() {
+                console.log("prueba");
+                boton1.removeEventListener("click",fn_click);
+                boton1.removeEventListener("mouseover",fn_mouseover);
+                boton1.removeEventListener("mouseout",fn_mouseout);
+                resultado.innerHTML="Has elemenidnado los eventos";
+                resultado.style.color="blue";
+            })
+        </script>
+    </body>
+</html>

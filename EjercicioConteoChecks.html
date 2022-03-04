@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <form>
+            <div><input type="checkbox" name="1" > <label>Caracteristica 1</label></div>
+            <div><input type="checkbox" name="2" > <label>Caracteristica 2</label></div>
+            <div><input type="checkbox" name="3" > <label>Caracteristica 3</label></div>
+            <div><input type="checkbox" name="4" > <label>Caracteristica 4</label></div>
+            <div><input type="checkbox" name="5" > <label>Caracteristica 5</label></div>
+            <h1 id="resultado"></h1>
+        </form>
+        <button onclick="check();">probar</button>
+        <script>
+            function check(){
+                lugar = document.getElementsByTagName("form");
+                contado=0;
+                resultado = document.getElementById("resultado");
+              console.log(lugar);
+                for (let i = 0; i < lugar.length; i++) {
+                    aux = lugar[i];
+                    console.log(aux.getElementsByTagName("input"));
+                       aux2 = aux.getElementsByTagName("input");
+                       console.log("Valore de aux2"+aux2);
+                       if(aux2.checked==true){
+                        contado+=1;
+                       }
+                        
+                    
+                    
+                }
+                if(contado>=3){
+                    resultado.innerHTML="OK";
+                }else{
+                    resultado.innerHTML="don't OK";
+                }
+            }
+            
+        </script>
+    </body>
+</html>

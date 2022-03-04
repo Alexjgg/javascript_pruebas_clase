@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <style>
+            #contenedor1{
+                height:200px;
+                width:200px;
+                background-color:blue;
+            }
+            #contenedor2{
+                height: 50px;
+                width: 50px;
+                background-color:yellowgreen;
+            }
+            </style>
+
+        </head>
+        <body>
+            <div id="contenedor1">
+                <div id="contenedor2">
+                </div>
+            </div>
+
+            <script>
+                c1=document.getElementById("contenedor1");
+                c2=document.getElementById("contenedor2");
+                c1.addEventListener("click",function(){alert("contenedor 1")},false)
+                c2.addEventListener("click",function(){alert("contenedor 2")})
+            </script>
+        </body>
+
+    </html>

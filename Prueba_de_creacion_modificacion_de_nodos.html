@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="div1">
+        <p id="p1">Esto es un parrafo</p>
+        <p id="p2">Esto es otro parrafo</p>
+    </div>
+    <script>
+        var parrafo = document.createElement("p");
+        var nodo = document.createTextNode("Parrafo nuevo");
+        parrafo.appendChld(nodo);
+        var elemento = document.getElementById("div1");
+        elemento.appendChild(parrafo);
+    </script>
+</body>
+
+</html
